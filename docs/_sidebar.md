@@ -1,5 +1,10 @@
 - [:octocat: 首页](/README)
 - :memo: 目录
+  
+   - java基础
+       - [java基础](/md/java/javaSE.md)
+   - javaWeb
+       - [javaWeb](/md/javaweb/javaweb.md)
    - idea插件开发
        
        - 第一章 开发入门
