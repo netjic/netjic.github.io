@@ -1,8 +1,8 @@
-![logo](_media/logo.png)
+![logo](_media/logo1.png)
 
-# java小垃圾
+# Java小垃圾
 
-## JAVA小垃圾烂笔头
+## JAVA小垃圾烂笔头****
 
 - 👨🏻‍💻好记性不如烂笔头 - 路漫漫，吾修远
     
