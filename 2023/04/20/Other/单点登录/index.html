@@ -1,0 +1,122 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>SSO单点登录 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">SSO单点登录</h1>
+            <div class="post-meta">
+                <time>2023-04-20</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="SSO单点登录"><a href="#SSO单点登录" class="headerlink" title="SSO单点登录"></a>SSO单点登录</h1><p>SSO 单点登录，Single Sign-On 的缩写，是指在多个应用系统中，用户只需要进行一次登录，就可以访问所有相互信任的应用系统。SSO 主要解决了跨域应用之间的认证问题，提高了用户体验和应用安全性。</p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><ol>
+<li>用户请求访问应用系统 A。</li>
+<li>应用系统 A 检查发现用户未登录，则重定向用户到 SSO 认证中心。</li>
+<li>SSO 认证中心检查发现用户未登录，则要求用户登录。</li>
+<li>用户输入用户名和密码后，SSO 认证中心验证用户信息，并生成令牌（Token）。</li>
+<li>SSO 认证中心将令牌放入用户浏览器的 Cookie 中，同时将该令牌返回给应用系统 A。</li>
+<li>应用系统 A 发送令牌到 SSO 认证中心进行验证，验证通过后将用户信息保存在本地，然后生成自己的 Cookie 返回给用户浏览器。</li>
+<li>用户再次请求访问应用系统 B，应用系统 B 发现用户已经有了 Cookie 就不会重复要求用户登录，而是直接使用应用系统 A 生成的 Cookie 登录。</li>
+<li>同理，如果用户访问其他受信任的应用系统，都无需再次登录。</li>
+</ol>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>SSO 单点登录的实现方式有多种，其中比较常见的有以下几种：</p>
+<ol>
+<li><p>基于 CAS（Central Authentication Service）的实现方式。CAS 是 Yale 大学开发的一款企业级的身份认证系统，使用了标准的票据机制和生成规则。使用 CAS 可以将用户信息保存在统一的 CAS 服务器上，然后其他应用程序只需要与 CAS 服务器交互即可，实现单点登录。</p>
+</li>
+<li><p>基于 OAuth2 的实现方式。OAuth2 是一种授权协议，它允许用户授权第三方应用访问他们存储在某个服务提供者上的信息，而无需将用户名和密码提供给第三方应用或分享他们的数据。可以通过 OAuth2 的 Authorization Server 单点登录认证，并通过 Access Token 进行授权访问。</p>
+</li>
+<li><p>基于 SAML（Security Assertion Markup Language）的实现方式。SAML 是基于 XML 的标准协议，主要用于身份认证和授权。使用 SAML 可以实现跨域认证，将用户从一个域传递到另一个域中，在不同的系统之间进行认证和授权。</p>
+</li>
+</ol>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="SSO-单点登录的优点："><a href="#SSO-单点登录的优点：" class="headerlink" title="SSO 单点登录的优点："></a>SSO 单点登录的优点：</h3><p>提高用户使用体验。用户只需要登录一次就可以访问所有相互信任的应用系统，避免了频繁的登录操作。<br>简化应用系统架构。各个应用系统之间不需要再进行多余的身份认证，降低了应用系统的开发难度和维护成本。<br>提高应用系统的安全性。用户只需要在 SSO 认证中心登录一次，减少了用户密码泄露的风险。</p>
+<h3 id="SSO-单点登录的缺点："><a href="#SSO-单点登录的缺点：" class="headerlink" title="SSO 单点登录的缺点："></a>SSO 单点登录的缺点：</h3><p>系统复杂度高。单点登录涉及到多个系统之间的信息共享和传递，需要考虑到各种异常情况，这增加了系统复杂度。<br>中心化架构可能成为瓶颈。如果认证中心出现故障或者遭受攻击，会影响到所有的应用系统。因此需要采取一些措施来保护认证中心的安全性和可靠性。<br>对于非 Web 应用支持不够友好</p>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2023/04/20/Mac/Mac%20ssh%E9%97%AE%E9%A2%98/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">mac连接ssh常见错误</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/04/09/Mac/Mac%20%E5%AE%89%E8%A3%85rabbitmq/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">Mac 安装rabbitmq</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#SSO单点登录">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

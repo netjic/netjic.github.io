@@ -1,0 +1,130 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>Redis持久化 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">Redis持久化</h1>
+            <div class="post-meta">
+                <time>2023-11-27</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h1><h3 id="1-持久化方式"><a href="#1-持久化方式" class="headerlink" title="1. 持久化方式"></a>1. 持久化方式</h3><ul>
+<li>RDB（默认）：RDB持久化是将某个时间点上Redis中的数据保存到一个RDB文件中</li>
+<li>AOF：将每一个写操作记录到一个日志文件中，当发生错误时，可以通过重新执行日志文件中的命令来恢复数据</li>
+<li>混合持久化：既有 RDB 又有 AOF，默认情况下，会优先使用 AOF</li>
+</ul>
+<h4 id="1-1-RDB持久化"><a href="#1-1-RDB持久化" class="headerlink" title="1.1 RDB持久化"></a>1.1 RDB持久化</h4><p>RDB持久化是将某个时间点上Redis中的数据保存到一个RDB文件中，当Redis重启时，会根据RDB文件来恢复数据。</p>
+<p>RDB持久化的优点：</p>
+<ul>
+<li>持久化的数据是经过压缩的，所以可以减少硬盘占用</li>
+<li>持久化的数据是经过冷备份的，所以即使服务器宕机，也可以从最近一次的备份中恢复数据</li>
+</ul>
+<p>data目录里面有dump.rdb文件</p>
+<h4 id="1-2-AOF持久化"><a href="#1-2-AOF持久化" class="headerlink" title="1.2 AOF持久化"></a>1.2 AOF持久化</h4><p>AOF持久化是将每一个写操作记录到一个日志文件中，当Redis重启时，会根据日志文件中的命令来恢复数据。</p>
+<p>AOF持久化的优点：</p>
+<ul>
+<li>持久化的数据是经过冷备份的，所以即使服务器宕机，也可以从最近一次的备份中恢复数据</li>
+<li>持久化的数据是经过压缩的，所以可以减少硬盘占用</li>
+</ul>
+<p>data目录里面有个appendonlydir目录：里面有.aof文件</p>
+<h3 id="2-持久化配置"><a href="#2-持久化配置" class="headerlink" title="2. 持久化配置"></a>2. 持久化配置</h3><h4 id="2-1-RDB持久化"><a href="#2-1-RDB持久化" class="headerlink" title="2.1 RDB持久化"></a>2.1 RDB持久化</h4><p>RDB持久化的配置文件为 redis.conf，配置文件中有如下配置：</p>
+<p>手动触发：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用SAVE命令可以手动触发RDB持久化操作，该命令会「阻塞服务器」的主线程，直到RDB文件生成完成为止。这个命令适合用于测试或紧急情况下的数据备份。</span></span><br><span class="line"><span class="comment"># 控制台 </span></span><br><span class="line">save</span><br><span class="line"><span class="comment"># 使用BGSAVE命令可以在后台触发RDB持久化操作，这个命令会派生一个子进程来执行RDB持久化，「不会阻塞服务器」的主线程。这是比较常用的生成RDB文件的方式。</span></span><br><span class="line">BGSAVE</span><br></pre></td></tr></table></figure>
+
+<p>自动触发：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以通过配置文件中的参数来自动触发RDB持久化操作。在配置文件（redis.conf）中可以设置save参数，用于指定在何时执行RDB持久化操作，例如：</span></span><br><span class="line"><span class="comment"># 开启RDB持久化</span></span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line"><span class="comment"># 这表示当900秒内至少发生1次写操作、300秒内至少发生10次写操作、60秒内至少发生10000次写操作时，自动触发BGSAVE命令。</span></span><br><span class="line"><span class="comment"># 无论是手动触发还是后台触发，RDB持久化操作都会生成一个RDB文件，其中包含了内存中的数据快照。需要注意的是，RDB持久化是一个资源密集型操作，可能会影响服务器的性能，特别是在数据集较大的情况下。因此，在选择何时执行RDB持久化时，需要根据业务需求和性能要求做出权衡。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-AOF持久化"><a href="#2-2-AOF持久化" class="headerlink" title="2.2 AOF持久化"></a>2.2 AOF持久化</h4><p>AOF持久化的配置文件为 redis.conf，配置文件中有如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启AOF持久化</span></span><br><span class="line">appendonly <span class="built_in">yes</span></span><br><span class="line"><span class="comment"># 开启AOF持久化后，每执行一条会修改数据的命令，AOF文件就会记录下来，当服务器重启时，会根据AOF文件的内容将写操作从头执行一遍，达到和从RDB文件恢复数据一样的效果。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 6379:6379 --name redis\</span><br><span class="line"> -v /Users/jichuang/docker/redis/redis.conf:/etc/redis/redis.conf\</span><br><span class="line"> -v /Users/jichuang/docker/redis/data:/data\</span><br><span class="line"> -d redis\</span><br><span class="line"> redis-server /etc/redis/redis.conf --appendonly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+<p>docker 启动的参数 –appendonly yes 开启 AOF 持久化</p>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2023/11/27/Redis/Redisson%E9%97%AD%E9%94%81/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">Redisson闭锁</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/11/27/Redis/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%EF%BC%8C%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">缓存穿透，缓存击穿，缓存雪崩</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#Redis持久化">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

@@ -1,0 +1,108 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>gulp读取execl [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">gulp读取execl</h1>
+            <div class="post-meta">
+                <time>2024-01-13</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h3 id="创建excel文件"><a href="#创建excel文件" class="headerlink" title="创建excel文件"></a>创建excel文件</h3><p>建议使用wps创建excel直接创建excel.xlsx会有问题</p>
+<h3 id="安装-exceljs插件"><a href="#安装-exceljs插件" class="headerlink" title="安装 exceljs插件"></a>安装 exceljs插件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install exceljs</span><br></pre></td></tr></table></figure>
+<h3 id="编写任务代码"><a href="#编写任务代码" class="headerlink" title="编写任务代码"></a>编写任务代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;exceljs&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 读取Excel文件</span></span><br><span class="line">    <span class="keyword">const</span> workbook = <span class="keyword">new</span> <span class="title class_">ExcelJS</span>.<span class="title class_">Workbook</span>();</span><br><span class="line">    <span class="comment">// 从文件读取</span></span><br><span class="line">    <span class="keyword">return</span> workbook.<span class="property">xlsx</span>.<span class="title function_">readFile</span>(<span class="string">&#x27;./excel.xlsx&#x27;</span>)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="comment">// 处理Excel文件中的数据</span></span><br><span class="line">            <span class="keyword">const</span> worksheet = workbook.<span class="title function_">getWorksheet</span>(<span class="number">1</span>); <span class="comment">// 获取第一个工作表</span></span><br><span class="line">            worksheet.<span class="title function_">eachRow</span>(&#123; <span class="attr">includeEmpty</span>: <span class="literal">true</span> &#125;, <span class="keyword">function</span> (<span class="params">row, rowNumber</span>) &#123;</span><br><span class="line">                <span class="comment">// 处理每一行的数据</span></span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Row <span class="subst">$&#123;rowNumber&#125;</span>: <span class="subst">$&#123;row.values&#125;</span>`</span>);</span><br><span class="line">                <span class="keyword">let</span> spliceElement = row.<span class="property">values</span>.<span class="title function_">splice</span>(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(spliceElement.<span class="title function_">filter</span>(<span class="function"><span class="params">el</span>=&gt;</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> el!==<span class="literal">undefined</span></span><br><span class="line">                &#125;));</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>excel官网 <a target="_blank" rel="noopener" href="https://github.com/exceljs/exceljs/blob/master/README_zh.md">https://github.com/exceljs/exceljs/blob/master/README_zh.md</a></p>
+</blockquote>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2024/01/13/Gulp/gulp%E8%AF%BB%E5%8F%96%E7%BD%91%E9%A1%B5/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">gulp读取网页</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2024/01/13/Gulp/gulp%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">gulp静态服务器</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#gulp读取execl">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

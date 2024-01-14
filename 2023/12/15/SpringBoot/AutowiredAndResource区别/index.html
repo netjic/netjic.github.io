@@ -1,0 +1,116 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>AutowiredAndResource区别 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">AutowiredAndResource区别</h1>
+            <div class="post-meta">
+                <time>2023-12-15</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="AutowiredAndResource区别"><a href="#AutowiredAndResource区别" class="headerlink" title="AutowiredAndResource区别"></a>AutowiredAndResource区别</h1><p>@Autowired是Spring中的注解</p>
+<p>@Resource是JSR-250中提供的注解，即Java提供的注解</p>
+<p>@Autowired的注入逻辑如下</p>
+<ol>
+<li>找到所有类型符合的bean</li>
+<li>如果没有类型符合的bean，则看@Autowired的required属性是否为true，是则抛出异常，否则返回nul</li>
+<li>如果只有一个，则将这个bean注入</li>
+<li>如果有多个bean。选择其中带有Primary注解的bean，如果只有一个直接注入，如果有多个bean带有Primary注解则报错<br>如果没有Primary，选择beanName和当前要注入的属性名相同的bean进行注入，有则注入，没有则报错<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 就会去找UserAdminService</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserService userAdminService;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>@Resource的注入逻辑如下</p>
+<ol>
+<li>如果@Resource指定了name，则只会按照name进行查找，当找不到时抛出异常，找到将bean注入  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据名字去找UserAdminService</span></span><br><span class="line"><span class="comment">// 指定名字</span></span><br><span class="line"><span class="meta">@Resource(name=&quot;userAdminService&quot;)</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> UserService userAdminService;</span><br></pre></td></tr></table></figure></li>
+<li>如果@Resource没有指定name，则把属性名作为名字进行查找，找到将bean注入，当按照名字查找不到时，按照类型进行查找  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据名字去找UserAdminService，如果没有找到就按照的类型</span></span><br><span class="line"><span class="meta">@Resource</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> UserService userAdminService;</span><br></pre></td></tr></table></figure>
+<strong>总结</strong><br>@Autowired：先byType再byName</li>
+</ol>
+<p>@Resource：先byName再byType（当指定@Resource name属性时，只会byName）</p>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2024/01/08/Other/%E6%95%B0%E6%8D%AE%E8%B0%83%E5%BA%A6%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">数据调度导入数据</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/12/15/SpringBoot/BeanFactoryAndApplicationContext%E7%9A%84%E5%8C%BA%E5%88%AB/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">BeanFactoryAndApplicationContext的区别</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#AutowiredAndResource区别">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

@@ -1,0 +1,179 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>Mysql常用语句 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">Mysql常用语句</h1>
+            <div class="post-meta">
+                <time>2023-03-15</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="Mysql常用语句"><a href="#Mysql常用语句" class="headerlink" title="Mysql常用语句"></a>Mysql常用语句</h1><h2 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="operator">/</span>usr<span class="operator">/</span><span class="keyword">local</span><span class="operator">/</span>mysql<span class="operator">/</span>bin<span class="operator">/</span>mysql <span class="operator">-</span>h localhost <span class="operator">-</span>uroot <span class="operator">-</span>p12345678</span><br><span class="line"></span><br><span class="line">  # 查看建表语句</span><br><span class="line">  <span class="keyword">show</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> sys_auth;</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line">查看是否走索引</span><br><span class="line">explain</span><br><span class="line"><span class="keyword">select</span> name</span><br><span class="line"><span class="keyword">from</span> sys_auth</span><br><span class="line"><span class="keyword">where</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="DDL-操作数据库"><a href="#DDL-操作数据库" class="headerlink" title="DDL 操作数据库"></a>DDL 操作数据库</h2><h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><ul>
+<li>连接数据库语句  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span>usr<span class="operator">/</span><span class="keyword">local</span><span class="operator">/</span>mysql<span class="operator">/</span>bin<span class="operator">/</span>mysql <span class="operator">-</span>h localhost <span class="operator">-</span>uroot <span class="operator">-</span>p12345678</span><br></pre></td></tr></table></figure></li>
+<li>查看数据库列表  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> databases;</span><br></pre></td></tr></table></figure></li>
+<li>创建数据库  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database 数据库名称;</span><br></pre></td></tr></table></figure></li>
+<li>修改数据库  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> database 数据库名称 charset<span class="operator">=</span>编码格式;</span><br></pre></td></tr></table></figure></li>
+<li>查看当前数据库下所有数据表  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> tables;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h3><ul>
+<li><p>表的约束</p>
+<ol>
+<li>非空约束：NOT NULL，不允许某列的内容为空；</li>
+<li>设置列的默认值：DEFAULT；</li>
+<li>唯一约束：UNIQUE，该表中，该列的内容必须唯一；</li>
+<li>主键约束：PRIMARY KEY，非空且唯一；</li>
+<li>主键自增长：AUTO_INCREMENT，从1开始，步长为1；</li>
+<li>外键约束：FOREIGN KEY，A表中的外键列。A表中的外键列的值必须参照于B表中的某一列（B表主键）。</li>
+</ol>
+</li>
+<li><p>建表</p>
+<p>列名1 列的类型  [约束],<br>列名2 列的类型  [约束],</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">## 如果表存在就移除，因为不能存在两个一样名称的表</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> <span class="string">&#x27;t_student&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t_student(</span><br><span class="line">id    <span class="type">BIGINT</span>          <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">name  <span class="type">VARCHAR</span>(<span class="number">25</span>)     <span class="keyword">UNIQUE</span>,</span><br><span class="line">email <span class="type">VARCHAR</span>(<span class="number">25</span>)     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">age   <span class="type">INT</span>             <span class="keyword">DEFAULT</span>  <span class="number">17</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+<li><p>删除表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> 表名;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="DML操作"><a href="#DML操作" class="headerlink" title="DML操作"></a>DML操作</h2><h3 id="修改操作-update-set"><a href="#修改操作-update-set" class="headerlink" title="修改操作(update set)"></a>修改操作(update set)</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名</span><br><span class="line"><span class="keyword">SET</span> 列<span class="number">1</span> <span class="operator">=</span> 值<span class="number">1</span>,</span><br><span class="line">    列<span class="number">2</span> <span class="operator">=</span> 值<span class="number">2</span>, ...</span><br><span class="line">    <span class="keyword">WHERE</span> [条件]</span><br><span class="line">    ## 将张三改为独孤求败</span><br><span class="line"><span class="keyword">UPDATE</span> t_student</span><br><span class="line"><span class="keyword">SET</span> name<span class="operator">=</span>&quot;独孤求败&quot;</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="operator">=</span> &quot;张三&quot;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：不要省略where条件子句。</p>
+<h3 id="插入操作（INSERT-INTO-VALUE）"><a href="#插入操作（INSERT-INTO-VALUE）" class="headerlink" title="插入操作（INSERT INTO VALUE）"></a>插入操作（INSERT INTO VALUE）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 (列<span class="number">1</span>，列<span class="number">2</span>，...) <span class="keyword">VALUE</span> (值<span class="number">1</span>，值<span class="number">2</span>，...);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 (列<span class="number">1</span>，列<span class="number">2</span>，...)</span><br><span class="line"><span class="keyword">VALUES</span> (值<span class="number">1</span>，值<span class="number">2</span>，...),</span><br><span class="line">       (值<span class="number">1</span>，值<span class="number">2</span>，...);</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"><span class="number">1</span></span><br><span class="line">、插入完整数据记录</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t_student (name, email, age) <span class="keyword">VALUE</span> (&quot;xiaoming&quot;, &quot;xiao@qq.com&quot;, <span class="number">16</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除操作（DELETE）"><a href="#删除操作（DELETE）" class="headerlink" title="删除操作（DELETE）"></a>删除操作（DELETE）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span> 表名</span><br><span class="line"><span class="keyword">WHERE</span> [条件]</span><br><span class="line"></span><br><span class="line">    # 删除 id 为 <span class="number">2</span> 的学生信息</span><br><span class="line"></span><br><span class="line"><span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">FROM</span> t_student</span><br><span class="line"><span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：Where子句别省略</p>
+<h2 id="DQL操作"><a href="#DQL操作" class="headerlink" title="DQL操作"></a>DQL操作</h2><h3 id="distinct-去重"><a href="#distinct-去重" class="headerlink" title="distinct 去重"></a>distinct 去重</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> 列名, ...<span class="keyword">FROM</span> 表名;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> productName, brand</span><br><span class="line"><span class="keyword">FROM</span> product;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：distinct 放在2个字段前，是2个字段组合后重复才去重</p>
+<h3 id="算术运算符（-，-，-，-）"><a href="#算术运算符（-，-，-，-）" class="headerlink" title="算术运算符（+，-，*，&#x2F;）"></a>算术运算符（+，-，*，&#x2F;）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">查询所有货物的id</span><br><span class="line">，名称和批发价</span><br><span class="line">（折扣价<span class="operator">=</span>销售价<span class="operator">*</span>折扣</span><br><span class="line">）</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> id, productName, salePrice <span class="operator">*</span> disCount</span><br><span class="line"><span class="keyword">From</span> product;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：对 number 型数据可以使用算术运算符（+，-，*，&#x2F;）对数据进行操作；对date型数据可以使用部分算术运算符（+，-）对数据进行操作。</p>
+<h3 id="按格式输出（CONCAT）"><a href="#按格式输出（CONCAT）" class="headerlink" title="按格式输出（CONCAT）"></a>按格式输出（CONCAT）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">查询商品的名字和零售价</span><br><span class="line">。格式</span><br><span class="line">：xxx商品的零售价为</span><br><span class="line">：ooo</span><br><span class="line"><span class="keyword">SELECT</span> CONCAT(productName, &quot; 商品的零售价为：&quot;, salePrice)</span><br><span class="line"><span class="keyword">FROM</span> product;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：对 number 型数据可以使用算术运算符（+，-，*，&#x2F;）对数据进行操作；对date型数据可以使用部分算术运算符（+，-）对数据进行操作。</p>
+<h3 id="范围和集合（BETWEEN-AND）"><a href="#范围和集合（BETWEEN-AND）" class="headerlink" title="范围和集合（BETWEEN AND）"></a>范围和集合（BETWEEN AND）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">使用的是闭区间</span><br><span class="line">，也就是包括minValue 和 maxValue</span><br><span class="line">    </span><br><span class="line"><span class="keyword">WHERE</span> 列名 <span class="keyword">BETWEEN</span> minValue <span class="keyword">AND</span> maxValue;</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line">查询零售价不在 <span class="number">300</span> <span class="operator">-</span> <span class="number">400</span> 之间的货品信息</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> product</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> salePrice <span class="keyword">BETWEEN</span> <span class="number">300</span> <span class="keyword">AND</span> <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：对 number 型数据可以使用算术运算符（+，-，*，&#x2F;）对数据进行操作；对date型数据可以使用部分算术运算符（+，-）对数据进行操作。<br>范围匹配：BETWEEN AND 运算符，一般使用在数字类型的范围上。但对于字符数据和日期类型同样可用。<br><strong>注意</strong>：BETWEE AND 使用的是闭区间。</p>
+<h3 id="判空（IS-NULL"><a href="#判空（IS-NULL" class="headerlink" title="判空（IS NULL)"></a>判空（IS NULL)</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> 列名 <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line">查询商品名为<span class="keyword">NULL</span>的所有商品信息</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> product</span><br><span class="line"><span class="keyword">WHERE</span> productName <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> product</span><br><span class="line"><span class="keyword">WHERE</span> supplier <span class="operator">=</span> &quot;&quot;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：使用 &#x3D; 来判断只能判断空字符串，不能判断 null；而使用 IS NULL 只能判断 null 值，不能判断空字符串。</p>
+<h3 id="模糊匹配查询（LIKE，-，-）"><a href="#模糊匹配查询（LIKE，-，-）" class="headerlink" title="模糊匹配查询（LIKE，%，_）"></a>模糊匹配查询（LIKE，%，_）</h3><p>LIKE：模糊查询数据使用 LIKE 运算执行通配符；<br>通配符：% 表示可有零个或多个任意字符; _ 便是需要一个任意字符；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> 列名 <span class="keyword">LIKE</span> &quot;%M_&quot;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：使用 &#x3D; 来判断只能判断空字符串，不能判断 null；而使用 IS NULL 只能判断 null 值，不能判断空字符串。</p>
+<h3 id="模糊匹配查询（LIKE，-，-）-1"><a href="#模糊匹配查询（LIKE，-，-）-1" class="headerlink" title="模糊匹配查询（LIKE，%，_）"></a>模糊匹配查询（LIKE，%，_）</h3><p>LIKE：模糊查询数据使用 LIKE 运算执行通配符；<br>通配符：% 表示可有零个或多个任意字符; _ 便是需要一个任意字符；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> 列名 <span class="keyword">LIKE</span> &quot;%M_&quot;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：使用 &#x3D; 来判断只能判断空字符串，不能判断 null；而使用 IS NULL 只能判断 null 值，不能判断空字符串。</p>
+<h3 id="统计函数"><a href="#统计函数" class="headerlink" title="统计函数"></a>统计函数</h3><ol>
+<li>COUNT(*)：统计表中有多少条数据；</li>
+<li>SUM(列)：汇总列的总和；</li>
+<li>MAX(列)：获取某一列的最大值；</li>
+<li>MIN(列)：获取某一列的最小值；</li>
+<li>AVG(列)：获取某一列的平均值；</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">查询货品表共有多少数据</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> product;</span><br><span class="line">#</span><br><span class="line">计算所有货品的销售价```</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(costPrice) <span class="keyword">FROM</span> product;<span class="operator">*</span><span class="operator">*</span>注意<span class="operator">*</span><span class="operator">*</span>：使用 <span class="operator">=</span> 来判断只能判断空字符串，不能判断 <span class="keyword">null</span>；而使用 <span class="keyword">IS</span> <span class="keyword">NULL</span> 只能判断 <span class="keyword">null</span> 值，不能判断空字符串。</span><br></pre></td></tr></table></figure>
+
+<h2 id="DQL字句的执行顺序"><a href="#DQL字句的执行顺序" class="headerlink" title="DQL字句的执行顺序"></a>DQL字句的执行顺序</h2><ol>
+<li>FROM字句：从哪张表中去查数据；</li>
+<li>JOIN table：先确定表，在确定关联条件；</li>
+<li>ON 条件：表绑定条件；</li>
+<li>WHERE字句：筛选需要的行数据；</li>
+<li>GROUP BY子句：分组操作；</li>
+<li>HAVING：对分组后的记录进行聚合；</li>
+<li>SELECT字句：筛选需要显示的列数据；（对字段 AS 起别名是在这时候，所以 WHERE 中不能用字段的别名，ORDER BY 中可以使用别名）；</li>
+<li>DISTINCT：去重；</li>
+<li>ORDER BY子句：排序操作；</li>
+<li>LIMIT子句：限制条件；</li>
+</ol>
+<h2 id="查看数据存储位置"><a href="#查看数据存储位置" class="headerlink" title="查看数据存储位置"></a>查看数据存储位置</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span></span><br><span class="line"><span class="keyword">global</span> variables <span class="keyword">like</span> <span class="string">&#x27;%datadir%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2023/03/15/Mysql/Mysql%E5%B8%B8%E7%94%A8Sql%E8%AF%AD%E5%8F%A5/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">Mysql常用Sql语句</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/03/15/Mysql/Mysql%E7%B4%A2%E5%BC%95/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">Mysql索引</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#Mysql常用语句">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

@@ -1,0 +1,125 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>环境操作 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">环境操作</h1>
+            <div class="post-meta">
+                <time>2023-08-03</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="环境操作"><a href="#环境操作" class="headerlink" title="环境操作"></a>环境操作</h1><p><code>编辑时间：2023-04-06</code></p>
+<h3 id="docker内容器操作"><a href="#docker内容器操作" class="headerlink" title="docker内容器操作"></a>docker内容器操作</h3><p>启动docker</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1.在软件中找到docker图标-点击</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.使用命令</span></span><br><span class="line"> open /Applications/Docker.app</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.启动mysql</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker start mysql</span><br><span class="line">进去mysql容器内</span><br><span class="line">docker exec -it mysql bash -c &#x27;mysql -uroot -p123456&#x27;</span><br></pre></td></tr></table></figure>
+<p>3.启动redis</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker start redis</span><br><span class="line">进去reids容器内</span><br><span class="line">docker exec -it redis bash -c &#x27;redis-cli -h 127.0.0.1 -p 6379&#x27;</span><br></pre></td></tr></table></figure>
+<p>本地化境（非docker)</p>
+<ol>
+<li><p>Mysql</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在设置中启动关闭 密码:12345678</span></span><br><span class="line"><span class="comment"># 连接 </span></span><br><span class="line">/usr/local/mysql/bin/mysql -h localhost -uroot -p12345678</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line"></span><br><span class="line">vim ~/.bash_profile</span><br><span class="line">进入后在文件末尾添加</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/Cellar/mysql/8.0.18/bin</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/Cellar/mysql/8.0.18/support-files</span><br><span class="line">退出后文件后</span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Redis</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Brew install redis 使用brew安装的</span><br><span class="line"><span class="comment"># 没有设置密码</span></span><br><span class="line"><span class="comment"># 本机redis安装位置</span></span><br><span class="line">/opt/homebrew/Cellar/redis/7.0.9</span><br><span class="line">open /opt/homebrew/Cellar/redis/7.0.9</span><br><span class="line"><span class="built_in">cd</span> /opt/homebrew/Cellar/redis/7.0.9</span><br><span class="line"></span><br><span class="line"><span class="comment"># redis 配置文件位置</span></span><br><span class="line"> /usr/local/redis/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动redis</span></span><br><span class="line">brew services start redis  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接redis 经测试 brew services stop redis 关闭后 执行下命令可以在redis客户端执行命令</span></span><br><span class="line"> redis-cli -h 127.0.0.1 -p 6379</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 关闭redis</span></span><br><span class="line"> redis-cli shutdown  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Nginx</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动 </span></span><br><span class="line">brew services start nginx</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">brew services stop nginx</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">brew services restart nginx</span><br><span class="line"><span class="comment"># 修改配置文件</span></span><br><span class="line"><span class="built_in">cd</span> /opt/homebrew/etc/nginx/</span><br><span class="line">open /opt/homebrew/etc/nginx/</span><br><span class="line">vim /opt/homebrew/etc/nginx/nginx.conf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭服务都可以使用一下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ps -ef |grep reids</span><br><span class="line"></span><br><span class="line">501 35077 34865   0  4:21PM ttys002    0:00.00 grep reids</span><br><span class="line"></span><br><span class="line">kill -9 pid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/jichuang/IdeaProjects/blog-master/spring-security-jwt-redis-demo</span><br><span class="line">mvn spring-boot:run</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2023/08/03/Other/Linux%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">Linux 常用命令</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/05/05/Other/Brew%E5%AE%89%E8%A3%85Nginx/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">Brew安装Nginx</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#环境操作">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

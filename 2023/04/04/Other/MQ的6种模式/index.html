@@ -1,0 +1,119 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>MQ的6种模式 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">MQ的6种模式</h1>
+            <div class="post-meta">
+                <time>2023-04-04</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="MQ的6种模式"><a href="#MQ的6种模式" class="headerlink" title="MQ的6种模式"></a>MQ的6种模式</h1><h3 id="队列的几个概念"><a href="#队列的几个概念" class="headerlink" title="队列的几个概念"></a>队列的几个概念</h3><ol>
+<li>生产者producer：生产者向队列发送消息</li>
+<li>消费者consumer：消费者从队列获取消息</li>
+<li>交换机exchange：订阅模式，生产者将消息发给交换机，由交换机选择把消息给谁</li>
+<li>通道channel：创建了通道，才能和mq链接操作</li>
+<li>队列queue：存消息的地方</li>
+</ol>
+<h3 id="1、简单模式"><a href="#1、简单模式" class="headerlink" title="1、简单模式"></a>1、简单模式</h3><p>一个生产者一个消费者</p>
+<p>生产者则发消息，消费之拿到消息，这个过程就结束了</p>
+<h3 id="2、work模式（work-queues）"><a href="#2、work模式（work-queues）" class="headerlink" title="2、work模式（work queues）"></a>2、work模式（work queues）</h3><p>一个生产者多个消费者</p>
+<p>生产则发送一条消息，只能被一个消费者拿到。</p>
+<p>如果生产者发送多条消息，消费者拿到的消息是不会重复的。</p>
+<h3 id="3、订阅模式（publish-subscribe）"><a href="#3、订阅模式（publish-subscribe）" class="headerlink" title="3、订阅模式（publish&#x2F;subscribe）"></a>3、订阅模式（publish&#x2F;subscribe）</h3><p>和work模式类似，一个生产者多个消费者，但是中间多了个交换机（exchange），一条消息可以被多个消费之获取。</p>
+<p>生产者将消息发给交换机，交换机吧消息分配给“已绑定”的消费者，前提是消费者和交换机绑定</p>
+<h3 id="4、路由模式（routing）"><a href="#4、路由模式（routing）" class="headerlink" title="4、路由模式（routing）"></a>4、路由模式（routing）</h3><p>和订阅模式类似，同样是一个生产者多个消费者，中间多了个交换机（exchange)，一条消息可以被多个消费者获取。但是他在传递消息的时候多设置了一个key，消费者拿消息的时候也设置一个或多个key，key匹配才能拿到消息</p>
+<p>例如：一号消费者设置的是insert，二号消费之设置的key是insert和update。假如生产者发送了一个key为insert的时候，两个消费者都能拿到数据。如果生产者发送了一个key为update，那么这个时候只有2号消费者能拿到数据。</p>
+<h3 id="5、通配符（话题）模式（Topics）"><a href="#5、通配符（话题）模式（Topics）" class="headerlink" title="5、通配符（话题）模式（Topics）"></a>5、通配符（话题）模式（Topics）</h3><p>和路由模式类似，同样一个生产者多个消费者，中间多了个交换机（exchange）,一条消息可以被多个消费者获取。同样是传key，但是他的key是可以模糊匹配的，*匹配一个单词，#匹配0或多个单词。</p>
+<p>例如：一号消费者设置的是item.#，二号消费者设置的key是item.*。一号消费者可以获取所有item开头的消息，二号就只能匹配item.后面加一个词的消息。例如：消息是item.insert他可以获取，但是item.insert.update他就不能获取了&#x2F;</p>
+<h3 id="6、RPC"><a href="#6、RPC" class="headerlink" title="6、RPC"></a>6、RPC</h3><p>例如：一号消费者设置的是item.#，二号设置的key是item.*。一号消费者可以获取所有item开头的消息，</p>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2023/04/06/Other/%E5%B8%B8%E8%A7%81Bug/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">常见Bug</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/03/20/Mac/Mac%20%E5%AE%89%E8%A3%85Homebrew/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">Mac 安装Homebrew</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#MQ的6种模式">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

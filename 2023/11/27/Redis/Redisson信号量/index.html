@@ -1,0 +1,107 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>Redisson闭锁 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">Redisson闭锁</h1>
+            <div class="post-meta">
+                <time>2023-11-27</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="Redisson闭锁"><a href="#Redisson闭锁" class="headerlink" title="Redisson闭锁"></a>Redisson闭锁</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>信号量为存储在redis中的一个数字，当这个数字大于0时，即可以调用acquire()方法增加数量，也可以调用release()方法减少数量，<br>但是当调用release()之后小于0的话方法就会阻塞，直到数字大于0。</p>
+<h3 id="项目依赖"><a href="#项目依赖" class="headerlink" title="项目依赖"></a>项目依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.redisson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>redisson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedissonConfig</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 配置一个临时的对象到spring容器中</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 一个RedissonClient的实现</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedissonClient <span class="title function_">redissonClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Config</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Config</span>();</span><br><span class="line">        config.useSingleServer()</span><br><span class="line">                .setAddress(<span class="string">&quot;redis://127.0.0.1:6379&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> Redisson.create(config);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><blockquote>
+<p>我们假设，有一个停车场有3个停车位，当停车位满了之后，其他要停车的就只能等待。那么我们如何将它做成一个java程序呢？<br>首先，我们要初始化停车位。也就是要往redis里面加入一个key和value。我这里加入的key为“park”，value为“3”。表示只有3个停车位</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化停车位</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/init&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//这里是获取信号量的值，这个信号量的name一定要与你初始化的一致</span></span><br><span class="line">        <span class="type">RSemaphore</span> <span class="variable">park</span> <span class="operator">=</span> redissonClient.getSemaphore(<span class="string">&quot;park&quot;</span>);</span><br><span class="line">        <span class="comment">//这里会将信号量里面的值+1，也就是释放信号量</span></span><br><span class="line">        park.trySetPermits(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//停车方法</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/park&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">park</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="comment">//这里是获取信号量的值，这个信号量的name一定要与你初始化的一致</span></span><br><span class="line">        <span class="type">RSemaphore</span> <span class="variable">park</span> <span class="operator">=</span> redissonClient.getSemaphore(<span class="string">&quot;park&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这里会将信号量里面的值-1，如果为0则一直等待，直到信号量&gt;0</span></span><br><span class="line">        park.acquire();</span><br><span class="line"><span class="comment">//        tryAcquire为非阻塞式等待</span></span><br><span class="line"><span class="comment">//        park.tryAcquire(); tryAcquire方式返回的是Boolean，可以通过判断Boolean值来确认是否可以执行业务</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//开车方法</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/release&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">release</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="comment">//这里是获取信号量的值，这个信号量的name一定要与你初始化的一致</span></span><br><span class="line">        <span class="type">RSemaphore</span> <span class="variable">park</span> <span class="operator">=</span> redissonClient.getSemaphore(<span class="string">&quot;park&quot;</span>);</span><br><span class="line">        <span class="comment">//这里会将信号量里面的值+1，也就是释放信号量</span></span><br><span class="line">        park.release();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2023/11/28/Redis/Redisson%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">Redisson基本数据类型存储</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/11/27/Redis/Redisson%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">Redisson可重入锁</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#Redisson闭锁">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+

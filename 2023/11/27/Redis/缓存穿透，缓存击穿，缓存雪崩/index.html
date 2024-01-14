@@ -1,0 +1,121 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love">
+    <title>缓存穿透，缓存击穿，缓存雪崩 [ 小姬炖蘑菇 ]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+    <meta name="keyword" content="">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">缓存穿透，缓存击穿，缓存雪崩</h1>
+            <div class="post-meta">
+                <time>2023-11-27</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><h1 id="缓存穿透，缓存击穿，缓存雪崩"><a href="#缓存穿透，缓存击穿，缓存雪崩" class="headerlink" title="缓存穿透，缓存击穿，缓存雪崩"></a>缓存穿透，缓存击穿，缓存雪崩</h1><h2 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h2><blockquote>
+<p>查询一个缓存中不存在的key，由于缓存未命中，逻辑判断是去查询数据库，但是数据库也无次记录，此时也就无法将新数据写到redis中，这将导致每次请求这个不存在的key时，后端服务都要去存储层去查询，一方面是增大了数据库压力，另一方面每次都要去数据库查询，也失去了缓存的意义</p>
+</blockquote>
+<p><strong>风险</strong></p>
+<p>如果恶意攻击者利用不存在的数据进行频繁攻击，数据库的瞬时压力会增大，可能会导致系统崩掉</p>
+<p><strong>解决方案</strong></p>
+<p>可以在处理缓存时，将不存在的key的value值设为null写入缓存，并设置一个短暂过期时间</p>
+<h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><blockquote>
+<p>批量key同一时间过期，导致缓存在某一时刻同时失效，请求全部转发到DB，数据库瞬时压力增大</p>
+</blockquote>
+<p><strong>风险</strong></p>
+<p>数据库的瞬时压力会增大，可能会导致系统崩掉</p>
+<p><strong>解决方案</strong></p>
+<p>可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件</p>
+<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><blockquote>
+<p>缓存在某个时间点过期的时候，恰好在这个时间点对这个Key有大量的并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存</p>
+</blockquote>
+<p><strong>风险</strong></p>
+<p>大并发的请求可能会瞬间把后端DB压垮</p>
+<p><strong>解决方案</strong><br>加锁，在线程1先发来请求，并且获取到了互斥锁。这时线程1就可以去查询数据库，接着将查询到的数据缓存到redis中，别的线程可以直接从redis中获取，最后记得释放锁，不然以后别的线程无法访问数据库。</p>
+<p><strong>备注：</strong> 对于缓存击穿和缓存雪崩来说，区别就是缓存击穿针对的一个key，缓存雪崩针对的是批量key</p>
+</div>
+    </div>
+</article>
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/2023/11/27/Redis/Redis%E6%8C%81%E4%B9%85%E5%8C%96/">
+      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+      <span class="post-title">Redis持久化</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/2023/09/15/SpringBoot/SpringBoot%E8%87%AA%E5%AE%9A%E4%B9%89starter/">
+      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+      <span class="post-title">SpringBoot 自定义starter</span>
+    </a>
+    
+  </nav>
+
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright @ 2024</div>
+        <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div>
+        <div class="plug">
+            <a href="/html/春节倒计时/index.html">春节</a>
+            <a href="/html/json格式化/index.html">json格式化</a>
+        </div>
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#缓存穿透，缓存击穿，缓存雪崩">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+
