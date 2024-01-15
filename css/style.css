@@ -401,6 +401,10 @@ body {
   text-decoration: none;
   color: rgba(82,100,136,0.6);
 }
+.footer-container .content .view {
+  margin-top: 10px;
+  color: rgba(82,100,136,0.6);
+}
 html {
   scroll-behavior: smooth;
 }
