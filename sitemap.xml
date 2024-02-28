@@ -578,13 +578,6 @@
 
   
   <url>
-    <loc>http://netjic.github.io/tags/Git/</loc>
-    <lastmod>2024-02-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://netjic.github.io/tags/Docker/</loc>
     <lastmod>2024-02-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -593,6 +586,13 @@
   
   <url>
     <loc>http://netjic.github.io/tags/Gulp/</loc>
+    <lastmod>2024-02-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://netjic.github.io/tags/Git/</loc>
     <lastmod>2024-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

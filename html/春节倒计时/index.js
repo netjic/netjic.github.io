@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 设置春节的日期，这里以2024年为例
-    const springFestivalDate = new Date('2024-02-10T00:00:00');
+    const springFestivalDate = new Date('2025-01-29T00:00:00');
 
     function updateCountdown() {
         const currentDate = new Date();
