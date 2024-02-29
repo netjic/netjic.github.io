@@ -620,6 +620,13 @@
   </url>
   
   <url>
+    <loc>http://netjic.github.io/tags/Redis/</loc>
+    <lastmod>2024-02-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://netjic.github.io/tags/Mysql/</loc>
     <lastmod>2024-02-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -628,13 +635,6 @@
   
   <url>
     <loc>http://netjic.github.io/tags/Other/</loc>
-    <lastmod>2024-02-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://netjic.github.io/tags/Redis/</loc>
     <lastmod>2024-02-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
