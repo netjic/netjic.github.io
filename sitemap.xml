@@ -585,14 +585,14 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Git/</loc>
+    <loc>http://netjic.github.io/tags/Gulp/</loc>
     <lastmod>2024-02-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Gulp/</loc>
+    <loc>http://netjic.github.io/tags/Git/</loc>
     <lastmod>2024-02-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -627,6 +627,13 @@
   </url>
   
   <url>
+    <loc>http://netjic.github.io/tags/Other/</loc>
+    <lastmod>2024-02-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://netjic.github.io/tags/Redis/</loc>
     <lastmod>2024-02-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -635,13 +642,6 @@
   
   <url>
     <loc>http://netjic.github.io/tags/SpringBoot/</loc>
-    <lastmod>2024-02-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://netjic.github.io/tags/Other/</loc>
     <lastmod>2024-02-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
