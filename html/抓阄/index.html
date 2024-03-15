@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抓阄</title>
+    <style>
+        html {
+            width: 100%;
+        }
+
+        /* 按钮样式 */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        /* 按钮鼠标悬停时的样式 */
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* 按钮点击时的样式 */
+        .button:active {
+            background-color: #3e8e41;
+        }
+
+        /* 结果容器样式 */
+        .results {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* 结果卡片样式 */
+        .card {
+            width: calc(22.33% - 20px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        /* 标题样式 */
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* 内容样式 */
+        .card p {
+            width: 100%;
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>抓阄</h1>
+
+    <div class="results" id="results"></div>
+    <button class="button" onclick="drawLottery()">抓阄</button>
+
+    <script>
+        // 定义业务和公司列表
+        var businesses = ['业务1', '业务2', '业务3', '业务4', '业务5', '业务6', '业务7', '业务8', '业务9', '业务10', '业务11', '业务12', '业务13'];
+        var companies = ['公司1', '公司2', '公司3', '公司4', '公司5', '公司6', '公司7', '公司8', '公司9', '公司10', '公司11', '公司12', '公司13'];
+
+        // 创建记录已分配公司的数组
+        var assignedCompanies = [];
+
+        function drawLottery() {
+            var resultsDiv = document.getElementById("results");
+
+            var availableCompanies = companies.filter(function (company) {
+                return !assignedCompanies.includes(company);
+            });
+
+            // 如果没有可用的公司了，则跳出循环
+            if (availableCompanies.length === 0) {
+                return;
+            }
+            console.log("111")
+
+            // 清空之前的结果
+            resultsDiv.innerHTML = "";
+
+            // 如果所有业务都已经被分配完毕，则提示用户
+            if (businesses.length === 0) {
+                var message = document.createElement("p");
+                message.textContent = "所有业务都已经被分配完毕！";
+                resultsDiv.appendChild(message);
+                return;
+            }
+
+            // 生成当前的分配结果
+            var currentResults = "";
+
+            // 逐个分配业务给公司
+            for (var i = 0; i < businesses.length; i++) {
+                // 获取当前业务
+                var business = businesses[i];
+
+                // 获取当前未分配的公司
+                var availableCompanies = companies.filter(function (company) {
+                    return !assignedCompanies.includes(company);
+                });
+
+                // 如果没有可用的公司了，则跳出循环
+                if (availableCompanies.length === 0) {
+                    break;
+                }
+
+                // 随机选择一个公司
+                var randomIndex = Math.floor(Math.random() * availableCompanies.length);
+                var company = availableCompanies[randomIndex];
+
+                // 将业务分配给公司
+                currentResults += "<div class='card'><h2>业务 '" + business + "' 分配给了公司 '" + company + "'</h2></div>";
+
+                // 将分配的公司记录到数组中
+                assignedCompanies.push(company);
+            }
+
+            // 在页面上显示当前的分配结果
+            resultsDiv.innerHTML = currentResults;
+        }
+    </script>
+
+</body>
+
+</html>
