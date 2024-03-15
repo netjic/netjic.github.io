@@ -79,13 +79,19 @@
 
     <script>
         // 定义业务和公司列表
+        var businessesInit = ['业务1', '业务2', '业务3', '业务4', '业务5', '业务6', '业务7', '业务8', '业务9', '业务10', '业务11', '业务12', '业务13'];
         var businesses = ['业务1', '业务2', '业务3', '业务4', '业务5', '业务6', '业务7', '业务8', '业务9', '业务10', '业务11', '业务12', '业务13'];
+        var companiesInit = ['公司1', '公司2', '公司3', '公司4', '公司5', '公司6', '公司7', '公司8', '公司9', '公司10', '公司11', '公司12', '公司13'];
         var companies = ['公司1', '公司2', '公司3', '公司4', '公司5', '公司6', '公司7', '公司8', '公司9', '公司10', '公司11', '公司12', '公司13'];
 
         // 创建记录已分配公司的数组
         var assignedCompanies = [];
 
         function drawLottery() {
+            business = businessesInit
+            companies = companiesInit
+            assignedCompanies = []
+
             var resultsDiv = document.getElementById("results");
 
             var availableCompanies = companies.filter(function (company) {
