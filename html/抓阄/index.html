@@ -4,148 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>抓阄</title>
+    <title>点击显示内容</title>
     <style>
-        html {
-            width: 100%;
-        }
-
-        /* 按钮样式 */
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        /* 按钮鼠标悬停时的样式 */
-        .button:hover {
-            background-color: #45a049;
-        }
-
-        /* 按钮点击时的样式 */
-        .button:active {
-            background-color: #3e8e41;
-        }
-
-        /* 结果容器样式 */
-        .results {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        /* 结果卡片样式 */
+        /* 牌的样式 */
         .card {
-            width: calc(22.33% - 20px);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            margin-bottom: 10px;
-        }
-
-        /* 标题样式 */
-        .card h2 {
+            width: 200px;
+            height: 300px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 30px;
+            display: inline-block;
+            text-align: center;
+            line-height: 150px;
             font-size: 20px;
-            margin-bottom: 10px;
-            color: #333;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s;
         }
 
-        /* 内容样式 */
-        .card p {
+        /* 牌翻转动画 */
+        .card.flipped {
+            transform: rotateY(360deg);
+        }
+
+        /* 正面和背面 */
+        .front,
+        .back {
+            position: absolute;
             width: 100%;
-            font-size: 16px;
-            color: #666;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        /* 正面样式 */
+        .front {
+            z-index: 2;
+        }
+
+        /* 背面样式 */
+        .back {
+            z-index: 1;
+            transform: rotateY(180deg);
         }
     </style>
 </head>
 
 <body>
 
-    <h1>抓阄</h1>
-
-    <div class="results" id="results"></div>
-    <button class="button" onclick="drawLottery()">抓阄</button>
+    <!-- 牌的容器 -->
+    <div id="card-container">
+        <!-- 使用 JavaScript 动态生成牌 -->
+    </div>
 
     <script>
-        // 定义业务和公司列表
-        var businessesInit = ['业务1', '业务2', '业务3', '业务4', '业务5', '业务6', '业务7', '业务8', '业务9', '业务10', '业务11', '业务12', '业务13'];
-        var businesses = ['业务1', '业务2', '业务3', '业务4', '业务5', '业务6', '业务7', '业务8', '业务9', '业务10', '业务11', '业务12', '业务13'];
-        var companiesInit = ['公司1', '公司2', '公司3', '公司4', '公司5', '公司6', '公司7', '公司8', '公司9', '公司10', '公司11', '公司12', '公司13'];
-        var companies = ['公司1', '公司2', '公司3', '公司4', '公司5', '公司6', '公司7', '公司8', '公司9', '公司10', '公司11', '公司12', '公司13'];
+        // 定义牌的值数组
+        var cardValues = ['采购业务', '存货业务', '销售业务', '工程项目业务', '固定资产业务', '合同业务', '销售业务', '工程项目业务', '固定资产业务', '合同业务', '销售业务', '采购业务', '存货业务'];
 
-        // 创建记录已分配公司的数组
-        var assignedCompanies = [];
+        // 打乱牌的值数组
+        cardValues.sort(() => Math.random() - 0.5);
 
-        function drawLottery() {
-            business = businessesInit
-            companies = companiesInit
-            assignedCompanies = []
+        // 获取牌的容器
+        var cardContainer = document.getElementById("card-container");
 
-            var resultsDiv = document.getElementById("results");
+        // 动态生成牌
+        for (var i = 0; i < cardValues.length; i++) {
+            var card = createCard(cardValues[i],i+1);
+            cardContainer.appendChild(card);
+        }
 
-            var availableCompanies = companies.filter(function (company) {
-                return !assignedCompanies.includes(company);
-            });
+        // 创建一张牌
+        function createCard(value,index) {
+            var card = document.createElement('div');
+            card.className = 'card';
 
-            // 如果没有可用的公司了，则跳出循环
-            if (availableCompanies.length === 0) {
-                return;
-            }
-            console.log("111")
+            // 正面
+            var front = document.createElement('div');
+            front.className = 'front';
+            // front.textContent = '点击翻转';
+            front.innerHTML = '<div><div>点击翻转</div><div>'+index+'</div><div>'
+            card.appendChild(front);
 
-            // 清空之前的结果
-            resultsDiv.innerHTML = "";
+            // 背面
+            var back = document.createElement('div');
+            back.className = 'back';
+            back.textContent = value;  // 设置牌的值为背面内容
+            card.appendChild(back);
 
-            // 如果所有业务都已经被分配完毕，则提示用户
-            if (businesses.length === 0) {
-                var message = document.createElement("p");
-                message.textContent = "所有业务都已经被分配完毕！";
-                resultsDiv.appendChild(message);
-                return;
-            }
+            // 点击翻转牌并显示内容
+            card.onclick = function () {
+                front.className = 'front';
+                //   front.textContent = '点击翻转';
+                front.textContent = value
+                card.classList.toggle('flipped');
+            };
 
-            // 生成当前的分配结果
-            var currentResults = "";
-
-            // 逐个分配业务给公司
-            for (var i = 0; i < businesses.length; i++) {
-                // 获取当前业务
-                var business = businesses[i];
-
-                // 获取当前未分配的公司
-                var availableCompanies = companies.filter(function (company) {
-                    return !assignedCompanies.includes(company);
-                });
-
-                // 如果没有可用的公司了，则跳出循环
-                if (availableCompanies.length === 0) {
-                    break;
-                }
-
-                // 随机选择一个公司
-                var randomIndex = Math.floor(Math.random() * availableCompanies.length);
-                var company = availableCompanies[randomIndex];
-
-                // 将业务分配给公司
-                currentResults += "<div class='card'><h2>业务 '" + business + "' 分配给了公司 '" + company + "'</h2></div>";
-
-                // 将分配的公司记录到数组中
-                assignedCompanies.push(company);
-            }
-
-            // 在页面上显示当前的分配结果
-            resultsDiv.innerHTML = currentResults;
+            return card;
         }
     </script>
 
