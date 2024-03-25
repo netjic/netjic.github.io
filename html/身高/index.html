@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>身高推测器</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        color: #fc0b1b;
+        text-align: center;
+        margin-top: 50px;
+    }
+    form {
+        margin: 20px auto;
+        width: 300px;
+        background-color: #fff;
+        padding: 66px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #fc0b1b;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top:30px ;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #ff3c4c;
+    }
+    #result {
+        margin-top: 20px;
+        text-align: center;
+    }
+    #result p {
+        color: #333;
+    }
+</style>
+</head>
+<body>
+
+<h1>身高推测器</h1>
+
+<form id="heightForm">
+    <label for="fatherHeight">父亲身高（厘米）：</label>
+    <input type="number" id="fatherHeight" required><br>
+    <label for="motherHeight">母亲身高（厘米）：</label>
+    <input type="number" id="motherHeight" required><br>
+    <button type="button" onclick="calculateHeight()">计算</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+    function calculateHeight() {
+        var fatherHeight = parseFloat(document.getElementById("fatherHeight").value);
+        var motherHeight = parseFloat(document.getElementById("motherHeight").value);
+
+        if (!isNaN(fatherHeight) && !isNaN(motherHeight)) {
+            var sonHeight = (fatherHeight + motherHeight + 13) / 2;
+            var daughterHeight = (fatherHeight + motherHeight - 13) / 2;
+
+            document.getElementById("result").innerHTML = "<h2>预测的子女身高：</h2>" +
+                "<p>男孩：" + sonHeight.toFixed(2) + "厘米</p>" +
+                "<p>女孩：" + daughterHeight.toFixed(2) + "厘米</p>";
+        } else {
+            document.getElementById("result").innerHTML = "<p>请输入有效的数字。</p>";
+        }
+    }
+</script>
+
+</body>
+</html>

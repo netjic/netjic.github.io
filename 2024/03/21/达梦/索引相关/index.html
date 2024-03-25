@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
     <meta name="description" content="Code_Life_Love">
-    <title>gulp读取本地文件 [小姬炖蘑菇]</title>
+    <title>索引相关 [小姬炖蘑菇]</title>
     
         <meta name="author" content="小姬炖蘑菇">
     
@@ -33,9 +33,9 @@
 <article>
     <div class="post-container">
         <header class="post-header">
-            <h1 class="post-title" id="top">gulp读取本地文件</h1>
+            <h1 class="post-title" id="top">索引相关</h1>
             <div class="post-meta">
-                <time>2024-01-13</time>
+                <time>2024-03-21</time>
                 <span>
                     <span class="post-author">
                         <span class="post-author-name">小姬炖蘑菇</span>
@@ -43,22 +43,19 @@
                 </span>
             </div>
         </header>
-        <div class="post-content"><h3 id="创建hello-txt文件"><a href="#创建hello-txt文件" class="headerlink" title="创建hello.txt文件"></a>创建hello.txt文件</h3><h3 id="编写task代码"><a href="#编写task代码" class="headerlink" title="编写task代码"></a>编写task代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.<span class="title function_">task</span>(<span class="string">&#x27;write_file&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> contentToWrite = <span class="string">&#x27;Hello, World!&#x27;</span></span><br><span class="line">        fs.<span class="title function_">writeFileSync</span>(<span class="string">&#x27;write_file.txt&#x27;</span>, contentToWrite, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;File has been written successfully.&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+        <div class="post-content"><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> &quot;SYS&quot;.&quot;DBA_INDEXES&quot; <span class="keyword">where</span> table_name <span class="operator">=</span> <span class="string">&#x27;aims_zh_audited_entity&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    indexdef(id, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">    sysobjects A</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">        pid<span class="operator">=</span></span><br><span class="line">        (</span><br><span class="line">            <span class="keyword">select</span> id <span class="keyword">from</span> sysobjects <span class="keyword">where</span> name <span class="operator">=</span><span class="string">&#x27;aims_zh_audited_entity&#x27;</span></span><br><span class="line">        )</span><br><span class="line">  <span class="keyword">and</span> subtype$ <span class="operator">=</span> <span class="string">&#x27;INDEX&#x27;</span></span><br><span class="line">  <span class="keyword">and</span> name <span class="operator">!=</span> <span class="string">&#x27;INDEX&#x27;</span></span><br><span class="line">        <span class="operator">||</span> id;</span><br></pre></td></tr></table></figure>
+
+<p>alter table aims_zh_problem_category drop index INDEX30837213806200  ;</p>
 </div>
     </div>
 </article>
 
 <nav class="post-nav">
     
-    <a class="post-nav-item post-nav-prev" href="/2024/01/13/Gulp/gulp%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0json%E6%96%87%E4%BB%B6/">
-      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
-      <span class="post-title">gulp读取本地json文件</span>
-    </a>
     
-    
-    <a class="post-nav-item post-nav-next" href="/2024/01/13/Gulp/gulp%E8%AF%BB%E5%8F%96%E7%BD%91%E9%A1%B5/">
+    <a class="post-nav-item post-nav-next" href="/2024/03/18/Docker/docker%E5%AE%B9%E5%99%A8%E5%A4%8D%E5%88%B6(cp)/">
       <div class="nav-arrow">下一篇&nbsp;&gt;</div>
-      <span class="post-title">gulp读取网页</span>
+      <span class="post-title">docker 复制命令</span>
     </a>
     
   </nav>
@@ -98,7 +95,7 @@
 
         </a>
 
-        <a href="/#gulp读取本地文件">
+        <a href="/#索引相关">
             <div class="box-index">
             </div>
         </a>

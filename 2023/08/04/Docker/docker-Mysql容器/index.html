@@ -49,6 +49,8 @@
 
 <h3 id="docker-mysql容器内存储数据的目录"><a href="#docker-mysql容器内存储数据的目录" class="headerlink" title="docker mysql容器内存储数据的目录"></a>docker mysql容器内存储数据的目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql bash</span><br><span class="line">cd /var/lib/mysql</span><br></pre></td></tr></table></figure>
 
+<h3 id="docker-mysql-数据导出"><a href="#docker-mysql-数据导出" class="headerlink" title="docker mysql 数据导出"></a>docker mysql 数据导出</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql mysqldump -uroot -p123456 reggie &gt; reggie_202303211707.sql 【当前目录】</span><br><span class="line">docker exec -it renda-mysql mysqldump -uroot -p111111 renda_online &gt; renda_online_202303211707.sql</span><br></pre></td></tr></table></figure>
+
 
 </div>
     </div>
