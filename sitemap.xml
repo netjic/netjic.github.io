@@ -605,7 +605,7 @@
 
   
   <url>
-    <loc>http://netjic.github.io/tags/Hexo/</loc>
+    <loc>http://netjic.github.io/tags/Docker/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -619,13 +619,6 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Docker/</loc>
-    <lastmod>2024-03-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://netjic.github.io/tags/Gulp/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -633,7 +626,7 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Mybatis/</loc>
+    <loc>http://netjic.github.io/tags/Hexo/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -647,6 +640,13 @@
   </url>
   
   <url>
+    <loc>http://netjic.github.io/tags/Mybatis/</loc>
+    <lastmod>2024-03-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://netjic.github.io/tags/Mysql/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -654,7 +654,7 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/SpringBoot/</loc>
+    <loc>http://netjic.github.io/tags/Other/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -668,7 +668,7 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Other/</loc>
+    <loc>http://netjic.github.io/tags/SpringBoot/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -698,13 +698,6 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/categories/logs/</loc>
-    <lastmod>2024-03-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://netjic.github.io/categories/Diary/Games/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -713,6 +706,13 @@
   
   <url>
     <loc>http://netjic.github.io/categories/Life/</loc>
+    <lastmod>2024-03-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://netjic.github.io/categories/logs/</loc>
     <lastmod>2024-03-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
