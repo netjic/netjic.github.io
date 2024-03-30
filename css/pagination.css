@@ -1,6 +1,6 @@
 .post-nav {
   border-color: #1b1d25;
-  width: 30%;
+  width: 50%;
   margin: 20px auto;
   margin-top: 38px;
   padding: 0 20px;
@@ -12,6 +12,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.post-nav .box {
+  width: 260px;
+  border: 1px solid #dadde1;
+  padding: 10px 0;
+  border-radius: 7px;
+}
+.post-nav .box:hover {
+  border: 1px solid #fc0b1b;
 }
 .post-nav .post-nav-item {
   display: inline-block;

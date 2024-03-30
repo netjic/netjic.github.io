@@ -84,6 +84,10 @@
 </li>
 </ul>
 <p><em>如果表标记为 TEMPORARY 则为临时表，在连接断开时表会消失。</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `bsi_problem_info` (</span><br><span class="line">  projectId <span class="type">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;项目ID&#x27;</span></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8 COMMENT<span class="operator">=</span><span class="string">&#x27;问题信息表&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
 <ul>
 <li><strong>列属性</strong></li>
 </ul>
@@ -136,7 +140,7 @@
 <td>该字段关联到其他表的主键。默认建立普通索引。</td>
 </tr>
 </tbody></table>
-<h2 id="3-表操作"><a href="#3-表操作" class="headerlink" title="3. 表操作"></a>3. 表操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">-- 查看所有表</span><br><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line"></span><br><span class="line">-- 创建表</span><br><span class="line">mysql&gt; CREATE [TEMPORARY] TABLE [IF NOT EXISTS] student</span><br><span class="line">       (</span><br><span class="line">           id INT(8) PRIMARY KEY AUTO_INCREMENT=1,</span><br><span class="line">           name VARCHAR(50) NOT NULL,</span><br><span class="line">           sex INT COMMENT &#x27;Male 1，Female 0&#x27;,</span><br><span class="line">       )ENGINE=InnoDB;</span><br><span class="line"></span><br><span class="line">-- 删除表</span><br><span class="line">mysql&gt; DROP TABLE [IF EXISTS] student;</span><br><span class="line"></span><br><span class="line">-- 清空表数据（直接删除表，再重新创建）</span><br><span class="line">mysql&gt; TRUNCATE [TABLE] student;</span><br><span class="line"></span><br><span class="line">-- 查看表结构</span><br><span class="line">mysql&gt; SHOW CREATE TABLE student;</span><br><span class="line">mysql&gt; DESC student;</span><br><span class="line"></span><br><span class="line">-- 修改表属性</span><br><span class="line">mysql&gt; ALTER TABLE student ENGINE=MYISAM;</span><br><span class="line"></span><br><span class="line">-- 重命名表</span><br><span class="line">mysql&gt; RENAME TABLE student TO new_student;</span><br><span class="line">mysql&gt; RENAME TABLE student TO mydb.new_student;      </span><br><span class="line"></span><br><span class="line">-- 复制表</span><br><span class="line">mysql&gt; CREATE TABLE new_student LIKE student;                  -- 复制表结构</span><br><span class="line">mysql&gt; CREATE TABLE new_student [AS] SELECT * FROM student;    -- 复制表结构和数据</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 检查表是否有错误</span><br><span class="line">mysql&gt; CHECK TABLE tbl_name [, tbl_name] ... [option] ...</span><br><span class="line">-- 优化表</span><br><span class="line">mysql&gt; OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...</span><br><span class="line">-- 修复表</span><br><span class="line">mysql&gt; REPAIR [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ... [QUICK] [EXTENDED] [USE_FRM]</span><br><span class="line">-- 分析表</span><br><span class="line">mysql&gt; ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...</span><br></pre></td></tr></table></figure>
+<h2 id="3-表操作"><a href="#3-表操作" class="headerlink" title="3. 表操作"></a>3. 表操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">-- 查看所有表</span><br><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line"></span><br><span class="line">-- 创建表</span><br><span class="line">mysql&gt; CREATE [TEMPORARY] TABLE [IF NOT EXISTS] student</span><br><span class="line">       (</span><br><span class="line">           id INT(8) PRIMARY KEY AUTO_INCREMENT=1,</span><br><span class="line">           name VARCHAR(50) NOT NULL,</span><br><span class="line">           sex INT COMMENT &#x27;Male 1，Female 0&#x27;,</span><br><span class="line">       )ENGINE=InnoDB;</span><br><span class="line"></span><br><span class="line">-- 删除表</span><br><span class="line">mysql&gt; DROP TABLE [IF EXISTS] student;</span><br><span class="line"></span><br><span class="line">-- 清空表数据（直接删除表，再重新创建）</span><br><span class="line">mysql&gt; TRUNCATE [TABLE] student;</span><br><span class="line"></span><br><span class="line">-- 查看表索引</span><br><span class="line">mysql&gt; show index from table</span><br><span class="line"></span><br><span class="line">-- 添加表索引</span><br><span class="line">mysql&gt; create index index_name on t_dept(name);</span><br><span class="line">mysql&gt; alter table t_dept add index index_name(name);</span><br><span class="line"></span><br><span class="line">-- 删除表索引</span><br><span class="line">mysql&gt;drop index index_name on table_name;</span><br><span class="line">mysql&gt;alter table table_name drop index index_name;</span><br><span class="line"></span><br><span class="line">-- 查看表结构</span><br><span class="line">mysql&gt; SHOW CREATE TABLE student;</span><br><span class="line">mysql&gt; DESC student;</span><br><span class="line"></span><br><span class="line">-- 修改表属性</span><br><span class="line">mysql&gt; ALTER TABLE student ENGINE=MYISAM;</span><br><span class="line"></span><br><span class="line">-- 重命名表</span><br><span class="line">mysql&gt; RENAME TABLE student TO new_student;</span><br><span class="line">mysql&gt; RENAME TABLE student TO mydb.new_student;      </span><br><span class="line"></span><br><span class="line">-- 复制表</span><br><span class="line">mysql&gt; CREATE TABLE new_student LIKE student;                  -- 复制表结构</span><br><span class="line">mysql&gt; CREATE TABLE new_student [AS] SELECT * FROM student;    -- 复制表结构和数据</span><br><span class="line"></span><br><span class="line">-- 复制表结构</span><br><span class="line">CREATE TABLE 新表名 AS SELECT * FROM 原表名 WHERE 1=2;</span><br><span class="line"></span><br><span class="line">-- 复制表数据</span><br><span class="line">INSERT INTO 新表名 SELECT * FROM 原表名;</span><br><span class="line"></span><br><span class="line">-- 检查表是否有错误</span><br><span class="line">mysql&gt; CHECK TABLE tbl_name [, tbl_name] ... [option] ...</span><br><span class="line">-- 优化表</span><br><span class="line">mysql&gt; OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...</span><br><span class="line">-- 修复表</span><br><span class="line">mysql&gt; REPAIR [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ... [QUICK] [EXTENDED] [USE_FRM]</span><br><span class="line">-- 分析表</span><br><span class="line">mysql&gt; ANALYZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE tbl_name [, tbl_name] ...</span><br></pre></td></tr></table></figure>
 
 <h2 id="4-操作数据"><a href="#4-操作数据" class="headerlink" title="4.操作数据"></a>4.操作数据</h2><h3 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h3><p><strong>插入数据</strong>，如果已有主键值则插入数据失败。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">INSERT</span> <span class="keyword">INTO</span> student</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (ID,name,grade)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">VALUES</span>(<span class="number">755</span>,<span class="string">&#x27;netjic&#x27;</span>,<span class="number">80</span>);</span><br></pre></td></tr></table></figure>
@@ -252,22 +256,31 @@
 </div>
     </div>
 </article>
-
 <nav class="post-nav">
-    
-    <a class="post-nav-item post-nav-prev" href="/2023/03/15/Mysql/Mysql%E4%BA%8B%E5%8A%A1/">
-      <div class="nav-arrow">&lt;&nbsp;上一篇</div>
-      <span class="post-title">Mysql事务</span>
-    </a>
-    
-    
-    <a class="post-nav-item post-nav-next" href="/2023/03/15/Mysql/Mysql%E7%B4%A2%E5%BC%95/">
-      <div class="nav-arrow">下一篇&nbsp;&gt;</div>
-      <span class="post-title">Mysql索引</span>
-    </a>
-    
-  </nav>
+  
+    <a class="post-nav-item post-nav-prev" href="/2023/03/15/Mysql/%E6%98%AF%E5%90%A6%E8%B5%B0%E7%B4%A2%E5%BC%95/">
+      <div class="box">
 
+        <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+        <span class="post-title">
+          是否走索引
+        </span>
+      </div>
+
+    </a>
+
+    
+      
+        <a class="post-nav-item post-nav-next" href="/2023/03/15/Mac/Mac%E9%85%8D%E7%BD%AEjdk/">
+          <div class="box">
+            <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+            <span class="post-title">
+              Mac配置jdk
+            </span>
+          </div>
+        </a>
+        
+</nav>
 <div class="footer-container">
     <div class="content">
         <div class="ye">

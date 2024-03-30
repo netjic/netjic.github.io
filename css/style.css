@@ -1,8 +1,3 @@
-@media (min-width: 0px) and (max-width: 768px) {
-  .container .txt-1 {
-    display: none;
-  }
-}
 body {
   padding: 0;
   margin: 0;
@@ -104,6 +99,31 @@ body {
 }
 .content-bottom {
   height: 136vh;
+}
+@media (min-width: 0px) and (max-width: 600px) {
+  .container .txt-1 {
+    display: none;
+  }
+  .container .top .top-title {
+    position: absolute;
+    top: 4%;
+    left: 7%;
+  }
+  .container .top .top-title .txt-1 {
+    font-size: 12px;
+  }
+  .container .top .top-title .txt-2 {
+    font-size: 24px;
+    letter-spacing: 6px;
+  }
+  .container .top .middle-title {
+    position: absolute;
+    bottom: 37%;
+    right: 6%;
+  }
+  .container .top .top-bottom-txt {
+    display: none;
+  }
 }
 @font-face {
   font-family: "txt1";
@@ -640,7 +660,7 @@ html {
 }
 .post-nav {
   border-color: #1b1d25;
-  width: 30%;
+  width: 50%;
   margin: 20px auto;
   margin-top: 38px;
   padding: 0 20px;
@@ -652,6 +672,15 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.post-nav .box {
+  width: 260px;
+  border: 1px solid #dadde1;
+  padding: 10px 0;
+  border-radius: 7px;
+}
+.post-nav .box:hover {
+  border: 1px solid #fc0b1b;
 }
 .post-nav .post-nav-item {
   display: inline-block;
