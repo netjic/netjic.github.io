@@ -108,16 +108,13 @@ body {
     background-size: 230% 100%;
     word-break: break-all;
   }
-  .container .txt-1 {
-    display: none;
-  }
   .container .top .top-title {
     position: absolute;
     top: 4%;
     left: 7%;
   }
   .container .top .top-title .txt-1 {
-    font-size: 12px;
+    font-size: 2rem;
   }
   .container .top .top-title .txt-2 {
     font-size: 24px;
