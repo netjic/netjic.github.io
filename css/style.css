@@ -101,6 +101,12 @@ body {
   height: 136vh;
 }
 @media (min-width: 0px) and (max-width: 600px) {
+  .container {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 230% 100%;
+    word-break: break-all;
+  }
   .container .txt-1 {
     display: none;
   }
