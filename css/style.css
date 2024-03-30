@@ -716,6 +716,7 @@ html {
 @media (min-width: 0px) and (max-width: 600px) {
   .post-nav {
     display: block;
+    width: 100%;
   }
   .post-nav .box {
     margin-bottom: 20px;
