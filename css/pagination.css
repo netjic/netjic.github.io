@@ -41,3 +41,12 @@
   color: #767f87;
   margin-bottom: 6px;
 }
+/* 小屏幕手机端 */
+@media (min-width: 0px) and (max-width: 600px) {
+  .post-nav {
+    display: block;
+  }
+  .post-nav .box {
+    margin-bottom: 20px;
+  }
+}

@@ -713,6 +713,14 @@ html {
   color: #767f87;
   margin-bottom: 6px;
 }
+@media (min-width: 0px) and (max-width: 600px) {
+  .post-nav {
+    display: block;
+  }
+  .post-nav .box {
+    margin-bottom: 20px;
+  }
+}
 .go-top-container {
   position: fixed;
   right: 30px;
