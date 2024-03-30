@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正方形Logo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .logo {
+            width: 100px;
+            /* 设置正方形的边长 */
+            height: 100px;
+            /* 设置正方形的边长 */
+            background-color: #3498db;
+            /* 设置正方形的颜色 */
+            border-radius: 5px;
+            /* 可选：为正方形添加圆角 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            /* 可选：为正方形添加阴影 */
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            
+        }
+
+        .box-top {
+            display: flex;
+            margin-bottom: 16px;
+        }
+
+        .box-l {
+            width: 176px;
+            height: 176px;
+            
+        
+        }
+
+        .box-r {
+            display: block;
+
+        }
+
+        .box-1 {
+            width: 80px;
+            height: 80px;
+            
+            margin-left: 16px;
+            margin-bottom: 16px;
+        }.box-2 {
+            width: 80px;
+            height: 80px;
+            
+            margin-left: 16px;
+            
+        }.box-3 {
+            width: 80px;
+            height: 80px;
+            
+            /* margin-right: 16px; */
+        }.box-4 {
+            width: 80px;
+            height: 80px;
+            
+            margin-left: 16px;
+        }.box-5 {
+            width: 80px;
+            height: 80px;
+            
+            margin-left: 16px;
+        }
+        .box-bottom{
+            display: flex;
+        }
+        .color{
+            background-color: #fc0b1b;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box">
+        <div class="box-top">
+            <div class="box-l color"></div>
+            <div class="box-r">
+                <div class="box-1 color"></div>
+                <div class="box-2 color"></div>
+            </div>
+        </div>
+        <div class="box-bottom">
+            <div class="box-3 color"></div>
+            <div class="box-4 color"></div>
+            <div class="box-5 color"></div>
+        </div>
+        <svg t="1711818074173" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4414" width="128" height="128"><path d="M652.563978 863.219221l56.168374-56.168374 294.955486-295.050847a69.423729 69.423729 0 0 0 0-98.318495L610.318495 20.312162a69.614453 69.614453 0 0 0-98.318495 0L217.044515 315.36301 160.780779 371.912833 20.312162 512a69.614453 69.614453 0 0 0 0 98.318495l393.369343 393.369343a69.519091 69.519091 0 0 0 57.217359 19.835351H1020.376234V944.086422H572.173589zM561.206929 83.537344l379.255727 379.35109-287.898678 287.898677L273.212889 371.912833zM462.793071 940.558018L83.632706 561.111566l133.507171-133.50717 379.160365 379.446451z" fill="#E31825" p-id="4415"></path></svg>
+    </div> -->
+    <!-- <svg t="1711818171294" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11641" width="128" height="128"><path d="M963.584 0q24.576 0 42.496 17.408t17.92 43.008l0 692.224q0 8.192-17.92 31.232t-45.056 53.248-60.416 63.488-63.488 60.416-53.248 45.056-31.232 17.92l-692.224 0q-24.576 0-42.496-17.92t-17.92-42.496l0-903.168q0-25.6 17.92-43.008t42.496-17.408l903.168 0zM649.216 812.032q13.312 0 22.528-9.728t9.216-23.04-9.216-22.528-22.528-9.216l-486.4 0q-13.312 0-23.04 9.216t-9.728 22.528 9.728 23.04 23.04 9.728l486.4 0zM909.312 551.936q14.336 0 23.552-9.728t9.216-24.064q0-12.288-9.216-21.504t-23.552-9.216l-746.496 0q-13.312 0-23.04 9.216t-9.728 21.504q0 14.336 9.728 24.064t23.04 9.728l746.496 0zM909.312 325.632q14.336 0 23.552-9.728t9.216-24.064q0-13.312-9.216-22.528t-23.552-9.216l-746.496 0q-13.312 0-23.04 9.216t-9.728 22.528q0 14.336 9.728 24.064t23.04 9.728l746.496 0z" p-id="11642" fill="#fc0b1b"></path></svg> -->
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LiveJournal</title><path d="M18.09 14.696c-1.512.664-2.726 1.885-3.381 3.399l4.27.883-.886-4.282h-.003zM2.475 8.317L0 5.85C1.125 3.237 3.216 1.14 5.823 0h.006l2.469 2.463c1.368-.591 2.876-.921 4.463-.921C18.967 1.542 24 6.569 24 12.771 24 18.973 18.967 24 12.761 24 6.551 24 1.52 18.976 1.52 12.771c0-1.591.355-3.081.952-4.451l9.143 9.114c1.125-2.613 3.218-4.71 5.823-5.85l-9.135-9.12h-.008c-2.606 1.14-4.695 3.24-5.823 5.85l.003.003z"/></svg>
+</body>
+
+</html>
