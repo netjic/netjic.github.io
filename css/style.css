@@ -124,6 +124,15 @@ body {
     bottom: 37%;
     right: 6%;
   }
+  .container .top .middle-title .txt-1 {
+    letter-spacing: 6px;
+  }
+  .container .top .middle-title .txt-2 {
+    letter-spacing: 6px;
+  }
+  .container .top .middle-title .txt-3 {
+    letter-spacing: 6px;
+  }
   .container .top .top-bottom-txt {
     display: none;
   }

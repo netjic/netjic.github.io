@@ -635,7 +635,7 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Mybatis/</loc>
+    <loc>http://netjic.github.io/tags/Gulp/</loc>
     <lastmod>2024-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -643,6 +643,13 @@
   
   <url>
     <loc>http://netjic.github.io/tags/Docker/</loc>
+    <lastmod>2024-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://netjic.github.io/tags/Mybatis/</loc>
     <lastmod>2024-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -670,13 +677,6 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Gulp/</loc>
-    <lastmod>2024-03-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://netjic.github.io/tags/Redis/</loc>
     <lastmod>2024-03-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -693,6 +693,13 @@
 
   
   <url>
+    <loc>http://netjic.github.io/categories/logs/</loc>
+    <lastmod>2024-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://netjic.github.io/categories/Diary/</loc>
     <lastmod>2024-03-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -701,13 +708,6 @@
   
   <url>
     <loc>http://netjic.github.io/categories/Diary/PlayStation/</loc>
-    <lastmod>2024-03-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://netjic.github.io/categories/logs/</loc>
     <lastmod>2024-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
