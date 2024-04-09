@@ -46,6 +46,7 @@
   .post-nav {
     display: block;
     width: 100%;
+    padding: 0;
   }
   .post-nav .box {
     margin-bottom: 20px;

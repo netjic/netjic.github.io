@@ -102,15 +102,22 @@ body {
 }
 /* 小屏幕手机端 */
 @media (min-width: 0px) and (max-width: 600px) {
+  .content-bottom {
+    height: 110vh;
+  }
   .container {
+    height: 110vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     word-break: break-all;
   }
+  .container .top {
+    height: 110vh;
+  }
   .container .top .top-title {
     position: absolute;
-    top: 4%;
+    top: 16%;
     left: 7%;
   }
   .container .top .top-title .txt-1 {
@@ -122,7 +129,7 @@ body {
   }
   .container .top .middle-title {
     position: absolute;
-    bottom: 37%;
+    bottom: 8%;
     right: 6%;
   }
   .container .top .middle-title .txt-1 {
