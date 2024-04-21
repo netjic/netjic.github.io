@@ -1,0 +1,126 @@
+<!--文章内容渲染-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta name="google-site-verification" content="ZFWosBKU9zZc1nug8xxt4ho13-BaVoYV0SkmWdXjyyw" />
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <!-- 引入本地的 Lightbox2 CSS 文件 -->
+    <script src="/js/log_layout.js"></script>
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="description" content="Code_Life_Love,姬闯,小姬炖蘑菇,Code_Life_Love,快点在风中撒点野,springBoot,mysql,程序员,docker,nginx,个人博客">
+    <title>文件分割添加后缀名[小姬炖蘑菇]</title>
+    
+        <meta name="author" content="小姬炖蘑菇">
+    
+    
+        <link rel="icon" href="/image/favicon.ico">
+    
+<!--     <meta name="keyword" content="小姬炖蘑菇"> -->
+    <meta name="keyword" content="姬闯,小姬炖蘑菇,Code_Life_Love,快点在风中撒点野">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/header.css">
+
+    
+<link rel="stylesheet" href="/css/pagination.css">
+
+
+<!--    https://github.com/stevenjoezhang/live2d-widget-->
+<!--    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>-->
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<article>
+    <div class="post-container">
+        <header class="post-header">
+            <h1 class="post-title" id="top">文件分割添加后缀名</h1>
+            <div class="post-meta">
+                <time>2024-04-16</time>
+                <span>
+                    <span class="post-author">
+                        <span class="post-author-name">小姬炖蘑菇</span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="post-content"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">        # 文件大小300行 文件名字 分割后文件前缀</span><br><span class="line">split -l 300 bgt.sql bgt_</span><br></pre></td></tr></table></figure>
+<p>Hbuild可以查看文件的编码</p>
+<p>b.sql使用 Hbuild中打开正常显示，显示文件编码为GB18030</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">遍历当前目录下的所有文件和文件夹，检查它们是否有后缀。如果没有后缀，则使用<span class="built_in">mv</span>命令给它们添加.suffix后缀</span></span><br><span class="line">for file in *; do  </span><br><span class="line">    if [[ ! &quot;$file&quot; == *.* ]]; then</span><br><span class="line">        mv &quot;$file&quot; &quot;$&#123;file&#125;.sql&quot;   </span><br><span class="line">    fi</span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</div>
+    </div>
+</article>
+<nav class="post-nav">
+  
+    <a class="post-nav-item post-nav-prev" href="/2024/04/20/Log/%E8%8B%8F%E5%B7%9E%E4%B8%83%E5%8D%81%E4%BA%8C%E5%AE%B6%E6%9D%91/">
+      <div class="box">
+
+        <div class="nav-arrow">&lt;&nbsp;上一篇</div>
+        <span class="post-title">
+          苏州七十二家村
+        </span>
+      </div>
+
+    </a>
+
+    
+      
+        <a class="post-nav-item post-nav-next" href="/2024/04/05/Log/%E9%B2%81%E8%BF%85%E6%95%85%E9%87%8C%E7%BB%8D%E5%85%B4/">
+          <div class="box">
+            <div class="nav-arrow">下一篇&nbsp;&gt;</div>
+            <span class="post-title">
+              鲁迅故里绍兴
+            </span>
+          </div>
+        </a>
+        
+</nav>
+<div class="footer-container">
+    <div class="content">
+        <div class="ye">
+        </div>
+        <div class="year">龙年大吉</div>
+        <div class="text">让那指针慢慢走</div>
+        <div class="copyright">Copyright@2024姬闯</div>
+        <!-- <div class="link"><span>友链</span>
+            <div class="link-name">
+                <router-link to="/jnz">Jnz</router-link>
+            </div>
+        </div> -->
+        <div class="plug">
+            <a href="/html/链接/index.html">链接</a>
+            <!-- <a href="/html/json格式化/index.html">json格式化｜</a>
+            <a href="/html/时间戳/index.html">时间戳｜</a>
+            <a href="/html/文件内容比对/index.html">文件内容比对｜</a> -->
+        </div>
+        <!-- <div class="view">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </div> -->
+    </div>
+</div>
+
+<div class="go-top-container">
+
+    <div class="box">
+        <a href="#top">
+            <div class="box-top">
+            </div>
+
+        </a>
+
+        <a href="/#文件分割添加后缀名">
+            <div class="box-index">
+            </div>
+        </a>
+
+    </div>
+</div>
+
