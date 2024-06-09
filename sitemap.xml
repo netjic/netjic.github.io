@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://netjic.github.io/2024/05/02/Log/%E5%8C%97%E4%BA%AC/</loc>
+    
+    <lastmod>2024-06-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://netjic.github.io/2024/05/14/Log/%E6%98%9F%E6%9C%88%E8%8F%A9%E6%8F%90-%E8%AE%B0%E5%BD%95%E5%8F%98%E8%89%B2%E8%BF%87%E7%A8%8B/</loc>
     
     <lastmod>2024-05-14</lastmod>
@@ -765,13 +774,6 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Hexo/</loc>
-    <lastmod>2024-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://netjic.github.io/tags/Git/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -779,7 +781,7 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Linux/</loc>
+    <loc>http://netjic.github.io/tags/Hexo/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -787,6 +789,13 @@
   
   <url>
     <loc>http://netjic.github.io/tags/Gulp/</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://netjic.github.io/tags/Linux/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
