@@ -765,7 +765,21 @@
   </url>
   
   <url>
+    <loc>http://netjic.github.io/tags/Hexo/</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://netjic.github.io/tags/Git/</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://netjic.github.io/tags/Linux/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -779,7 +793,7 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Hexo/</loc>
+    <loc>http://netjic.github.io/tags/Mac/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -793,14 +807,14 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Mac/</loc>
+    <loc>http://netjic.github.io/tags/Mysql/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Mysql/</loc>
+    <loc>http://netjic.github.io/tags/Other/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -821,21 +835,7 @@
   </url>
   
   <url>
-    <loc>http://netjic.github.io/tags/Other/</loc>
-    <lastmod>2024-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://netjic.github.io/tags/%E8%BE%BE%E6%A2%A6/</loc>
-    <lastmod>2024-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://netjic.github.io/tags/Linux/</loc>
     <lastmod>2024-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
