@@ -1,0 +1,16 @@
+import{_ as a,c as e,a as d,o as n}from"./app-CNZkbZ7y.js";const r={};function i(c,t){return n(),e("div",null,t[0]||(t[0]=[d(`<blockquote><p>子网掩码（Subnet Mask）是网络中的一个重要概念，用来划分IP地址的网络部分和主机部分。</p></blockquote><h2 id="_1-ip地址的作用" tabindex="-1"><a class="header-anchor" href="#_1-ip地址的作用"><span>1. IP地址的作用</span></a></h2><ul><li>就像你的家庭地址（如北京市朝阳区XX街道1号），IP地址（如192.168.1.10）用来标识网络中的设备。</li><li>但IP地址需要分成两部分： <ul><li>网络部分：代表整个子网（类似“朝阳区”）。</li><li>主机部分：代表子网中的具体设备（类似“XX街道1号”）。</li></ul></li></ul><h2 id="_2-子网掩码的功能" tabindex="-1"><a class="header-anchor" href="#_2-子网掩码的功能"><span>2. 子网掩码的功能</span></a></h2><pre><code>- 子网掩码是一串类似IP的数字（如255.255.255.0），它的作用是告诉设备如何区分IP地址中的网络和主机部分。
+- 规则：子网掩码中255对应的部分是网络位，0对应的部分是主机位。
+  - IP地址：192.168.1.10
+  - 子网掩码：255.255.255.0
+  - 这意味着前三个数字（192.168.1）是网络号，最后一个数字（10）是主机号。
+</code></pre><h2 id="_3-实际例子" tabindex="-1"><a class="header-anchor" href="#_3-实际例子"><span>3. 实际例子</span></a></h2><pre><code>- 如果两台设备的IP地址和子网掩码如下：
+  - 设备A：192.168.1.10，子网掩码255.255.255.0
+  - 设备B：192.168.1.20，子网掩码255.255.255.0
+  - 判断是否在同一子网：比较网络部分（前三个数字192.168.1），相同则可以直接通信。
+- 如果子网掩码是255.255.0.0：
+  - 网络部分变为前两个数字（192.168），主机部分是后两个（1.10和1.20），此时它们仍在同一子网。
+</code></pre><h2 id="_4-为什么需要子网掩码" tabindex="-1"><a class="header-anchor" href="#_4-为什么需要子网掩码"><span>4. 为什么需要子网掩码？</span></a></h2><ul><li>划分子网：比如公司将一个大网络分成多个小部门子网，提高效率。</li><li>节省IP资源：避免给每个小网络分配独立的IP段。</li><li>安全隔离：不同子网的设备不能直接通信，增强安全性。</li></ul><h2 id="_5-如何计算ip范围" tabindex="-1"><a class="header-anchor" href="#_5-如何计算ip范围"><span>5. 如何计算IP范围？</span></a></h2><p>假设有一个IP地址 192.168.1.0/26（子网掩码 255.255.255.192），计算步骤如下：</p><p>步骤1：确定网络地址</p><pre><code>- 将IP和子网掩码做按位与运算：
+  - IP: 192.168.1.0 → 11000000.10101000.00000001.00000000   
+  - 掩码: 255.255.255.192 → 11111111.11111111.11111111.11000000
+  - 结果（网络地址）: 11000000.10101000.00000001.00000000 -&gt; 192.168.1.0
+</code></pre><p>步骤2：确定广播地址 - 将主机位全部置1： - 网络地址: 192.168.1.00000000（后6位是主机位） - 广播地址: 192.168.1.00111111 → 192.168.1.63。</p><p>步骤3：可用IP范围 - 起始IP：网络地址 +1 → 192.168.1.1 - 结束IP：广播地址 -1 → 192.168.1.62 - 可用IP数量：62个（即 192.168.1.1 ~ 192.168.1.62）</p><h2 id="_6-常见cidr表示法与子网掩码对照表" tabindex="-1"><a class="header-anchor" href="#_6-常见cidr表示法与子网掩码对照表"><span>6. 常见CIDR表示法与子网掩码对照表</span></a></h2><table><thead><tr><th>CIDR 表示法</th><th>子网掩码</th><th>网络位</th><th>主机位</th><th>示例（网络地址）</th></tr></thead><tbody><tr><td>/8</td><td>255.0.0.0</td><td>前8位</td><td>后24位</td><td>10.0.0.0/8</td></tr><tr><td>/16</td><td>255.255.0.0</td><td>前16位</td><td>后16位</td><td>172.16.0.0/16</td></tr><tr><td>/24</td><td>255.255.255.0</td><td>前24位</td><td>后8位</td><td>192.168.1.0/24</td></tr><tr><td>/28</td><td>255.255.255.240</td><td>前28位</td><td>后4位</td><td>192.168.1.0/28</td></tr></tbody></table>`,17)]))}const s=a(r,[["render",i],["__file","index.html.vue"]]),h=JSON.parse('{"path":"/article/298sand3/","title":"子网掩码","lang":"zh-CN","frontmatter":{"title":"子网掩码","createTime":"2025/05/24 16:04:09","permalink":"/article/298sand3/"},"headers":[],"readingTime":{"minutes":2.15,"words":645},"git":{"updatedTime":1748077734000,"contributors":[{"name":"netjic","username":"netjic","email":"netjic@163.com","commits":1,"avatar":"https://gravatar.com/avatar/374578fe375437866193fe849b770e3f9c74eacc1a7125303870c05b7a97309d?d=retro"}]},"filePathRelative":"计算机/子网掩码.md","categoryList":[{"id":"8a2b56","sort":10014,"name":"计算机"}],"bulletin":false}');export{s as comp,h as data};
